@@ -1010,18 +1010,18 @@ class ValidationManager:
         
         return True  # 모든 교사가 제한 내
     
-    def check_daily_subject_limit(self, timetable, max_per_day=2):
+    def check_daily_subject_limit(self, timetable, max_per_day=1):
         """
         하루에 같은 과목이 최대 횟수를 초과하는지 확인
         
         Args:
             timetable: 시간표
-            max_per_day: 하루 최대 과목 수 (기본값: 2)
+            max_per_day: 하루 최대 과목 수 (기본값: 1)
             
         Returns:
             bool: 모든 과목이 제한을 지키면 True, 아니면 False
         """
-        for (grade, cls), df in timetable.items():
+        for (grade), df in timetable.items():
             for day in df.index:
                 # 해당 요일의 각 교시 과목 확인
                 subjects = df.loc[day].values
